@@ -1,8 +1,6 @@
-from numba import jit
 
-@jit
 class Vehicule:
-    @jit
+
     def __init__(self, id, route_initiale, position, vitesse, itineraire):
         try:
             if not isinstance(id, (int, str)) or (isinstance(id, str) and not id):
@@ -33,7 +31,7 @@ class Vehicule:
         except ValueError as e:
             print(f"Erreur lors de l'initialisation du véhicule {id} : {e}")
             raise # Relaisser l'exception pour que l'appelant puisse la gérer
-    @jit
+
     def avancer(self, delta_t, route_obj):
         """Avance le véhicule pendant delta_t secondes."""
         try:
@@ -59,7 +57,7 @@ class Vehicule:
         except Exception as e:
             print(f"Une erreur inattendue est survenue lors de l'avancement du véhicule {self.identifiant} : {e}")
             return self.position
-    @jit
+
     def changer_de_route(self, nouvelle_route):
         """Change le véhicule de route."""
         try:
@@ -81,7 +79,7 @@ class Vehicule:
             print(f"Erreur lors du changement de route pour le véhicule {self.identifiant} : {e}")
         except Exception as e:
             print(f"Une erreur inattendue est survenue lors du changement de route : {e}")
-    @jit
+
     def a_termine_itineraire(self):
         """Vérifie si le véhicule a terminé son itinéraire."""
         try:
@@ -95,6 +93,6 @@ class Vehicule:
         except Exception as e:
             print(f"Une erreur inattendue est survenue lors de la vérification de l'itinéraire : {e}")
             return True
-    @jit
+
     def __repr__(self):
         return f"Vehicule({self.identifiant}, route={self.route_actuelle}, pos={self.position:.1f}m)"

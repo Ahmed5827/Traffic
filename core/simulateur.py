@@ -1,15 +1,13 @@
 from models.reseau import ReseauRoutier
-from numba import jit
 
-@jit
 class Simulateur:
-    @jit
+
     def __init__(self):
         """Initialise le simulateur avec la configuration du réseau."""
         self.reseau = ReseauRoutier()
         self.reseau.charger_config()
         self.temps_ecoule = 0.0
-    @jit
+
     def lancer_simulation(self, n_tours, delta_t):
         """Lance la simulation du trafic."""
         print(f"=== DÉBUT DE LA SIMULATION ===")
@@ -23,7 +21,7 @@ class Simulateur:
             print()
         
         print("=== FIN DE LA SIMULATION ===")
-    @jit
+
     def mettre_a_jour(self, delta_t):
         """Met à jour l'état de tous les véhicules."""
         vehicules_a_retirer = []
@@ -58,7 +56,7 @@ class Simulateur:
         # Retirer les véhicules qui ont terminé
         for vid in vehicules_a_retirer:
             del self.reseau.vehicules[vid]
-    @jit
+
     def afficher_etat(self):
         """Affiche l'état actuel de la simulation."""
         print("\nÉtat des routes:")

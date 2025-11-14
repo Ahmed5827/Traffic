@@ -1,8 +1,6 @@
 
-from numba import jit
-@jit
 class Route:
-    @jit
+
     def __init__(self, nom, longueur, limite_de_vitesse, vehicules_presents=None):
         try:
             if not isinstance(nom, str) or not nom:
@@ -21,7 +19,6 @@ class Route:
         except ValueError as e:
             print(f"Erreur lors de l'initialisation de la route : {e}")
             raise # Relaisser l'exception pour que l'appelant puisse la gérer
-    @jit
     def ajouter_vehicule(self, vehicule):
         try:
             if not hasattr(vehicule, 'identifiant'):
@@ -37,7 +34,7 @@ class Route:
             print(f"Erreur lors de l'ajout d'un véhicule à la route '{self.nom}' : {e}")
         except Exception as e:
             print(f"Une erreur inattendue est survenue lors de l'ajout d'un véhicule : {e}")
-    @jit
+
     def retirer_vehicule(self, vehicule):
 
         try:
@@ -53,6 +50,5 @@ class Route:
             print(f"Erreur lors du retrait d'un véhicule de la route '{self.nom}' : {e}")
         except Exception as e:
             print(f"Une erreur inattendue est survenue lors du retrait d'un véhicule : {e}")
-    @jit
     def __repr__(self):
         return f"Route({self.nom}, {self.longueur}m, {self.limite_de_vitesse}m/s)"

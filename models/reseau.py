@@ -2,21 +2,20 @@ import json
 from models.route import Route
 from models.vehicule import Vehicule
 import os
-from numba import jit
-@jit
+
 class ReseauRoutier:
-    @jit
+
     def __init__(self):
         self.routes = {}  # Dict: nom -> Route
         self.intersections = {}  # Dict: nom -> liste de routes connectées
         self.vehicules = {}  # Dict: id -> Vehicule
-    @jit
+
     def ajouter_route(self, route):
         self.routes[route.nom] = route
-    @jit
+
     def ajouter_intersection(self, intersection):
         self.intersections[intersection['nom']] = intersection['connecte']
-    @jit
+
     def ajouter_vehicule(self, vehicule):
         self.vehicules[vehicule.identifiant] = vehicule
         try:
@@ -26,7 +25,7 @@ class ReseauRoutier:
                 raise ValueError(f"La route actuelle '{vehicule.route_actuelle}' du véhicule '{vehicule.identifiant}' n'existe pas dans le réseau.")
         except ValueError as e:
             print(f"Erreur lors de l'ajout du véhicule à sa route : {e}")
-    @jit
+
     def charger_config(self):
         fichier_json = None
         if fichier_json is None:
@@ -72,7 +71,7 @@ class ReseauRoutier:
             print(f"Erreur de données invalides lors du chargement de la configuration : {e}")
         except Exception as e: 
             print(f"Une erreur inattendue est survenue lors du chargement de la configuration : {e}")
-    @jit
+
     def obtenir_route_suivante(self, vehicule):
 
         try:
